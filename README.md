@@ -60,4 +60,40 @@
   `\password`
 - Isikan password baru untuk user postgres
 
-### Install Library database migration di server
+### Install Aplikasi nodejs yang sudah jadi
+- Upload file app.zip ke server melalui ftp/sftp tools seperti filezilla 
+- extract file tersebut
+  `unzip app.zip`
+- jika server belum menginstall unzip, maka terlebih dahulu install unzip
+  `sudo apt install unzip`
+- copy file .env.example menjadi .env dan edit file .env sesuai konfigurasi yang dibutuhkan
+
+  `cp .env.example .env`
+
+- copy file database.json.example menjadi database.json dan edit sesuai settingan database postgreSQL anda
+
+  `cp database.json.example database.json`
+- install node modules 
+  `npm install` 
+
+### Running aplikasi Nndejs dengan pm2
+- Install library pm2
+  `sudo npm install -g pm2`
+- running app nodejs
+  `pm2 start bin/www.js`
+- jika ingin auto start, ketika server dinyalakan ulang jalankan
+  `pm2 startup`
+- kemudian jalankan perintah yang tertulis setelahkan menjalankan command di atas
+- simpan konfigurasi pm2
+  `pm2 save`
+- cek apakah aplikasi sudah running, dengan menjalankan command
+  `curl http://localhost:5100/`
+
+### Install Library database migration di server, dan menjalankan database migration
+- Secara umum, install library di server juga sama dengan di lokal, hanya saja jika library global harus memakai sudo
+  `npm install -g db-migrate` 
+- diubah menjadi
+  `sudo npm install -g db-migrate`
+- jalankan database migration
+  `db-migrate up`
+
